@@ -1,10 +1,8 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
-using System.Text;
 
 namespace average_in_one_project
 {
-    
     public enum Range
     {
         Min = 50,
@@ -16,10 +14,10 @@ namespace average_in_one_project
     {
         public void InputGrades()
         {
-            int[] numbers = new int[(int)Range.Size];
-            int sum = 0;
+            List<int> numbers = new List<int>();
+            int size = (int)Range.Size;
 
-            for (int i = 0; i < numbers.Length; i++)   // Start at 0 (C# arrays start at 0)
+            for (int i = 0; i < size; i++)
             {
                 Console.Write($"Enter number for quarter {i + 1}: ");
 
@@ -27,8 +25,7 @@ namespace average_in_one_project
                 {
                     if (num >= (int)Range.Min && num <= (int)Range.Max)
                     {
-                        numbers[i] = num;
-                        sum += num;
+                        numbers.Add(num);
 
                         if (num >= 74)
                             Console.WriteLine($"You Passed in quarter {i + 1}");
@@ -48,22 +45,14 @@ namespace average_in_one_project
                 }
             }
 
-            double average = (double)sum / numbers.Length;
+            int sum = 0;
+            foreach (int grade in numbers)
+            {
+                sum += grade;
+            }
+
+            double average = (double)sum / numbers.Count;
             Console.WriteLine("Average = " + average);
         }
     }
 }
-
-
-
-    // 
-
-
-
-
-
-
-
-
-
-
